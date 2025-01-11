@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scaled=1.0">
+        <title>
+            Responsive CV using Html, css & flask
+        </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <style>
+            @import url('httpd://fonts.googleapis.com/css?family=poppins:200.,300,400,500,600,700,800,900&diplay=swap');
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family:'poppins',sans-serif;
+
+            }
+
+
+            body
+            {
+                background: lightblue;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+            .container
+            {
+                position: relative;
+                width: 100%;
+                max-width:  842px;
+                min-height: 595px;
+                background: #fff;
+                margin: 50px;
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                box-shadow: 0 35px 55px rgba(0,0,0,0,1);
+
+            }
+            .container .left_side
+            {
+                position: relative;
+                background: #003147;
+                padding: 40px;
+            }
+            .profileText
+            {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-bottom: 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            .profileText .imgbx
+            {
+                position: relative;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+            .profileText .imgbx img
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .profileText h2
+            {
+                color: #fff;
+                font-size: 1em;
+                margin-top: 20px;
+                text-transform: uppercase;
+                text-align: center;
+                font-weight: 600;
+                line-height: 1.4em;
+            }
+            .profileText h2 span
+            {
+                font-size: 0.9em;
+                font-weight: 300;
+
+            }
+            .contactInfo
+            {
+                padding-top: 40px;
+
+            }
+            .title
+            {
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-bottom: 20px;
+            }
+            .contactInfo u1
+            {
+                position: relative;
+            }
+            .contactInfo u1 li
+            {
+                position: relative;
+                list-style: none;
+                margin: 10px 0;
+
+                cursor: pointer;
+            }
+            .contactInfo u1 li .icon
+            {
+                display: inline-block;
+                width: 25px;
+                font-size: 14px;
+                color: #03a9f4;
+
+            }
+            .contactInfo u1 li span
+            {
+                color: #fff;
+                font-weight: 300;
+                font-size: 12px;
+            }
+            .contactInfo.education li
+            {
+                margin-bottom: 15px;
+            }
+            .contactInfo.education h5
+            {
+                color: #03a9f4;
+                font-weight: 600;
+            }
+            .contactInfo.education h4:nth-child(2)
+            {
+                color: #fff;
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            .contactInfo.education h4
+            {
+                color: #fff;
+                font-weight: 400;
+                font-size: 14px;
+            }
+            .contactInfo.language .percent
+            {
+                position: relative;
+                width: 100%;
+                height: 6px;
+                background: #081921;
+                display: block;
+
+            }
+            .contactInfo.language .percent div
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                background: #03a9f4;
+
+            }
+
+            .container .right_side
+            {
+                position: relative;
+                background: #fff;
+                padding: 40px;
+            }
+            .about
+            {
+                margin-bottom: 50px;
+            }
+            .about:last-child
+            {
+                margin-bottom: 0;
+            }
+            .title1
+            {
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-bottom: 20px;
+                font-size: 17px;
+            }
+            .contactInfo .box .Website_Name1 h5
+            {
+            color:  #fff;
+            font-weight: 600;
+            }
+            .title2
+            {
+                color: #003147;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+                font-size:18px
+            }
+            p
+            {
+                color: #333;
+                font-size:12px;
+            }
+            .about .box
+            {
+            display: flex;
+            flex-direction:row;
+            margin: 20px 0;
+            }
+            .about .box .Website_Name
+            {
+            min-width: 150px
+            }
+            .about .box .Website_Name h5
+            {
+            text-transform: uppercase;
+            color:  #102a71;
+            font-weight: 600;
+            }
+            .about .box .Website_Name h6
+            {
+            text-transform: uppercase;
+            color: #848c99;
+            font-weight: 600;
+            }
+            .about .box .text h4
+            {
+            text-transform: uppercase;
+            color:#003147;
+            font-size: 15px;
+            }
+
+            .skills .box
+            {
+            position: relative;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            justify-content: center;
+            align-items: center;
+            }
+            .skills .box h4
+            {
+            text-transform: uppercase;
+            color: #102a71;
+            font-weight: 500;
+            }
+            .skills .box .percent
+            {
+            position: relative;
+            width: 100%;
+            height: 10px;
+            background: #848c99;
+            }
+            .skills .box .percent div
+            {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background:#03a9f4;
+            }
+
+            @media (max-width: 1000px)
+            {
+            .container
+            {
+            margin: 10px;
+            grid-template-columns: repeat(1, 1fr);
+            }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left_side">
+                <div class="profileText">
+                    <div class="imgBx">
+                    <img src="static\images\IMG_20240218_190142.jpg" style="width:150px;height:150px;">
+                </div>
+                    <h2>Abishek A <br><span>Student</span></h2>
+                </div>
+           
+                <div class="contactInfo">
+                    <h3 class="title">contact Info</h3>
+                
+                <u1>
+                    <li>
+                        <span class="icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                        <span class="text">+91 6369960588</span>
+                    </li>
+                    <li>
+                        <span class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                        <span class="text">abisheks708@gmail.com</span>
+                    </li>
+                     <li>
+                        <span class="icon"><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+                        <span class="text">www.linkedin.com/in/abishek-a-1a1b9727b</span>
+                    </li>
+                     <li>
+                        <span class="icon"><i class="fa fa-github" aria-hidden="true"></i></span>
+                        <span class="text">https://github.com/Abishek708</span>
+                    </li>
+                    <li>
+                        <span class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                        <span class="text">mayiladuthurai,TamilNadu</span>
+                    </li>
+                    
+                </u1>
+                </div>
+                <div class="contactInfo education">
+                    <h3 class="title">Education </h3>
+
+                <u1>
+                    <li>
+                        <h5>2021-2025</h5>
+                        <h4>Bachelor Degree in Computer science and Engineering</h4>
+                        <h4>Vaigai College of Engineering,</h4>
+                        <h4>Melur,Madurai</h4>
+                    </li>
+                     <li>
+                        <h5>2019-2021</h5>
+                        <h4>Higher secondary Education</h4>
+                        <h4>Sri Ramakrishna Vidyalaya Matric Hr Sec school, </h4>
+                        <h4>Manalmedu, Mayiladuthurai</h4>
+                    </li>
+                     <li>
+                        <h5>2018-2019</h5>
+                        <h4>Secondary School Education</h4>
+                        <h4>Sri Ramakrishna Vidyalaya Matric Hr Sec school, </h4>
+                        <h4>Manalmedu, Mayiladuthurai</h4>
+                    </li>
+                </u1>
+                </div>
+                <div class="contactInfo language">
+                    <h3 class="title">language </h3>
+                    <u1>
+                        <li>
+                            <span class="text">Tamil</span>
+                            <span class="percent">
+                                <div style="width: 100%;"></div>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text">English</span>
+                            <span class="percent">
+                                <div style="width: 70%;"></div>
+                            </span>
+                        </li>
+                    </u1>
+                </div>
+            </div>
+
+            
+            <div class="right_side">
+                <br><br>
+                <div class="about">
+                    <h2 class="title2">Course Completion</h2>
+                    <div class="box">
+                        <div class="Website_Name">
+                            <h5>Udemy </h5>
+                            <h6>100 Days Of Code</h6>
+                        </div>
+                        <div class="text">
+                            <h4>Complete Python pro bootcamp</h4>
+                            <p> I had completed python beginner level to advanced level.I have good knowledge in python.
+                                In this course I learn about basics of python to advanced, Data Analytics, API,Web Scraping </p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="Website_Name">
+                            <h5>Coursera </h5>
+                            <h6> Professional Course <br> -9 course series</h6>
+                        </div>
+                        <div class="text">
+                            <h4>Data analytics with R Programming and Excel</h4>
+                            <p>Learn how to perform data analysis, including data preparation, statistical analysis, and
+                                predictive modeling using R, R Studio, Excel,and Jupyter. And also gain knowledges about sql with R</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="Website_Name">
+                            <h5>Coursera </h5>
+                            <h6> specialization Course <br> -3 course series</h6>
+                        </div>
+                        <div class="text">
+                            <h4>Excel skill for data analytics and visualization</h4>
+                            <p> These courses will equip me with a comprehensive set of tools for transforming, linking, and analysing data.
+                                It will master a broad range of charts and create stunning interactive dashboards.It is 3 course series are Excel Fundamentals,
+                                data visualizaton and Excel power tools</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="Website_Name">
+                            <h5>Naan Mudhalvan</h5>
+                            <h6>MS_office Fundamental </h6>
+                        </div>
+                        <div class="text">
+                            <h4>Microsoft excel, powerpoint, word, outlook, onedrive</h4>
+                            <p> In this course, i learn basics of all fundamental microsoft.</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="Website_Name">
+                            <h5>Naan Mudhalvan</h5>
+                            <h6> Microsoft, Edunet foundation</h6>
+                        </div>
+                        <div class="text">
+                            <h4>Foundation of AI, ML, FS</h4>
+                            <p> In naan mudhalvan i learn what is AI and ML, what are the algorithms in AI. It also tech me about web develoment
+                            , cloud computing .</p>
+                        </div>
+                    </div>
+                </div><br><br>
+                <div class="about skills">
+                    <h2 class="title2">Professional Skills</h2>
+                    <div class="box">
+                        <h4>Python</h4>
+                        <div class="percent">
+                            <div style="width: 95%;"></div>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <h4>Django</h4>
+                        <div class="percent">
+                            <div style="width: 95%;"></div>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <h4>Flask</h4>
+                        <div class="percent">
+                            <div style="width: 95%;"></div>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <h4>My Sql</h4>
+                        <div class="percent">
+                            <div style="width: 90%;"></div>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <h4>Excel</h4>
+                        <div class="percent">
+                             <div style="width: 95%;"></div>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <h4>Power BI</h4>
+                        <div class="percent">
+                            <div style="width: 95%;"></div>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <h4 style = " font-size: 13px;">Machine Learning </h4>
+                        <div class="percent">
+                            <div style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <h4 style = " font-size: 13px;">Microsoft Azure </h4>
+                        <div class="percent">
+                            <div style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
